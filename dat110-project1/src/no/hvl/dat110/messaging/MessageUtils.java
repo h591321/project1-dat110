@@ -1,6 +1,8 @@
 package no.hvl.dat110.messaging;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
+
 
 import no.hvl.dat110.TODO;
 
@@ -11,35 +13,31 @@ public class MessageUtils {
 	public static final int MESSAGINGPORT = 8080;
 	public static final String MESSAGINGHOST = "localhost";
 	
+
 	public static byte[] encapsulate(Message message) {
 		
-		byte[] segment = null;
-		byte[] data;
+		Integer messLenInt = message.getData().length;
+		byte messLenByte = messLenInt.byteValue();
+		ByteBuffer byteBuffer= ByteBuffer.allocate(SEGMENTSIZE);
+
+		byte[] segment = byteBuffer.put(messLenByte).put(message.getData()).array();	
 		
-		// TODO - START
-		
-		// encapulate/encode the payload data of the message and form a segment
-		// according to the segment format for the messagin layer
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-			
-		// TODO - END
 		return segment;
 		
 	}
 
 	public static Message decapsulate(byte[] segment) {
 
-		Message message = null;
+		int dataLen=segment[0];
+		Message message = new Message();
+		byte[] data= new byte[dataLen];
 		
-		// TODO - START
-		// decapsulate segment and put received data into a message
+		for(int i=0;i<dataLen;i++) {
+			data[i]=segment[i+1];
+		}
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO - END
+		message.setData(data);
 		
 		return message;
 		
