@@ -15,6 +15,8 @@ public class RPCClient {
 	
 	public void connect() {
 		
+		connection = msgclient.connect();
+		
 		// TODO - START
 		// connect using the underlying messaging layer connection
 		
@@ -26,6 +28,7 @@ public class RPCClient {
 	
 	public void disconnect() {
 		
+		connection.close();
 		// TODO - START
 		// disconnect/close the underlying messaging connection
 		
@@ -38,6 +41,12 @@ public class RPCClient {
 	public byte[] call(byte rpcid, byte[] params) {
 		
 		byte[] returnval = null;
+		Message sendMSG = new Message(RPCUtils.encapsulate(rpcid, params));
+		connection.send(sendMSG);
+		
+		Message replyMSG = connection.receive();
+		
+		returnval = replyMSG.getData();
 		
 		// TODO - START 
 		

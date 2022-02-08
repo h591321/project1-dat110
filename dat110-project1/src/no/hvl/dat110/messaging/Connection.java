@@ -6,7 +6,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import no.hvl.dat110.TODO;
 
 
 public class Connection {
@@ -34,22 +33,16 @@ public class Connection {
 
 	public void send(Message message) {
 
-		byte[] data=message.getData();
-		
-		//encap?
-
+		byte[] data=MessageUtils.encapsulate(message);
 		try {
 			outStream.write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public Message receive() {
 
-		//decap?
-		Message message = new Message();
 		byte[] data= new byte[128];
 		
 		try {
@@ -57,8 +50,7 @@ public class Connection {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		message.setData(data);
-		return message;
+		return MessageUtils.decapsulate(data);
 		
 	}
 

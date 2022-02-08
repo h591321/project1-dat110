@@ -22,9 +22,10 @@ public class MessagingClient {
 	public Connection connect () {
 		Connection connection=null;
 		Socket clientSocket;
+		
 		try {
 			clientSocket = new Socket(server,port);
-			connection=new Connection(clientSocket);
+			connection = new Connection(clientSocket);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

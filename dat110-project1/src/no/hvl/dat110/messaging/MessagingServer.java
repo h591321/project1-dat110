@@ -27,7 +27,6 @@ public class MessagingServer {
 	public Connection accept() {
 
 		Connection connection = null;
-		
 
 		try {
 			Socket connectionSocket = welcomeSocket.accept();

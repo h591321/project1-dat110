@@ -12,7 +12,7 @@ public class Message {
 	public Message() {
 		this.data=null;
 	}
-
+	
 	public byte[] getData() {
 		return this.data; 
 	}

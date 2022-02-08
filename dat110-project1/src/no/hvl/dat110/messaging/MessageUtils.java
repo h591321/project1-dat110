@@ -12,7 +12,7 @@ public class MessageUtils {
 
 	public static final int MESSAGINGPORT = 8080;
 	public static final String MESSAGINGHOST = "localhost";
-	
+
 
 	public static byte[] encapsulate(Message message) {
 		
