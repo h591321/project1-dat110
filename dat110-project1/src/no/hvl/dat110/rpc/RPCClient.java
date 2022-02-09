@@ -17,38 +17,31 @@ public class RPCClient {
 		
 		connection = msgclient.connect();
 		
-		// TODO - START
+
 		// connect using the underlying messaging layer connection
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+
 	}
 	
 	public void disconnect() {
 		
 		connection.close();
-		// TODO - START
 		// disconnect/close the underlying messaging connection
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
 	}
 	
 	public byte[] call(byte rpcid, byte[] params) {
 		
 		byte[] returnval = null;
+		// unmarshall params params = RPCUtils.;
 		Message sendMSG = new Message(RPCUtils.encapsulate(rpcid, params));
 		connection.send(sendMSG);
 		
 		Message replyMSG = connection.receive();
 		
-		returnval = replyMSG.getData();
+		returnval = RPCUtils.decapsulate(replyMSG.getData());
 		
-		// TODO - START 
+		
 		
 		/* 
 		 * 
@@ -61,11 +54,8 @@ public class RPCClient {
 		according to the RPC message format
 			
 		*/
-				
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO - END
+
 		return returnval;
 		
 	}

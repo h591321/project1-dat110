@@ -58,7 +58,7 @@ public class Connection {
 	public void close() {
 
 		try {
-			
+
 			outStream.close();
 			inStream.close();
 
