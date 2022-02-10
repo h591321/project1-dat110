@@ -19,7 +19,6 @@ public class RPCUtils {
 		
 		for(int i=0;i<rpcmsg.length-1;i++){
 			payload[i]=rpcmsg[i+1];
-			
 		}
 		
 		return payload;
